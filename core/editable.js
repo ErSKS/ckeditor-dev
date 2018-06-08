@@ -1140,22 +1140,6 @@
 					} );
 				}
 
-				// Prevent right click from selecting an empty block even
-				// when selection is anchored inside it. (https://dev.ckeditor.com/ticket/5845)
-				if ( CKEDITOR.env.gecko ) {
-					this.attachListener( this, 'mouseup', function( ev ) {
-						if ( ev.data.$.button == 2 ) {
-							var target = ev.data.getTarget();
-
-							if ( !target.getOuterHtml().replace( emptyParagraphRegexp, '' ) ) {
-								var range = editor.createRange();
-								range.moveToElementEditStart( target );
-								range.select( true );
-							}
-						}
-					} );
-				}
-
 				// Webkit: avoid from editing form control elements content.
 				if ( CKEDITOR.env.webkit ) {
 					// Prevent from tick checkbox/radiobox/select
